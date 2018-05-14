@@ -1,0 +1,76 @@
+package kr.co.bit.vo;
+
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class PostVO {
+
+    private int postNo;
+    private int cateNo;
+    private String postTitle;
+    private String postContent;
+    private String regDate;
+
+    public PostVO(int postNo, int cateNo, String postTitle, String postContent, String regDate) {
+        this.postNo = postNo;
+        this.cateNo = cateNo;
+        this.postTitle = postTitle;
+        this.postContent = postContent;
+        this.regDate = regDate;
+    }
+
+    public PostVO() {
+    }
+
+    public int getPostNo() {
+        return postNo;
+    }
+
+    public void setPostNo(int postNo) {
+        this.postNo = postNo;
+    }
+
+    public int getCateNo() {
+        return cateNo;
+    }
+
+    public void setCateNo(int cateNo) {
+        this.cateNo = cateNo;
+    }
+
+    public String getPostTitle() {
+        return postTitle;
+    }
+
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
+
+    public String getPostContent() {
+        return postContent;
+    }
+
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
+    }
+
+    public String getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
+    }
+
+    @Override
+    public String toString() {
+        return "PostVO{" +
+                "postNo=" + postNo +
+                ", cateNo=" + cateNo +
+                ", postTitle='" + postTitle + '\'' +
+                ", postContent='" + postContent + '\'' +
+                ", regDate='" + regDate + '\'' +
+                '}';
+    }
+}

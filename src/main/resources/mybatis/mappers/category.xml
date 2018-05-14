@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+
+    <insert id="makeCategory" parameterType="kr.co.bit.vo.UsersVO">
+        <![CDATA[
+          Insert INTO CATEGORY
+          values(
+          SEQ_CATEGORY_NO.nextval,
+          #{id},
+          '미분류',
+          null,
+          CURRENT_DATE
+          )
+        ]]>
+    </insert>
+
+    <select id = "getList" parameterType="String" resultType="kr.co.bit.vo.CategoryVO" >
+
+        <![CDATA[
+            select * from CATEGORY where id = #{id} ORDER BY CATENO
+]]>
+    </select>
+
+    <insert id="addCate" parameterType="kr.co.bit.vo.CategoryVO">
+        <selectKey keyProperty="cateNo" resultType="int" order="BEFORE">
+
+            SELECT SEQ_CATEGORY_NO.nextval from dual
+
+        </selectKey>
+        <![CDATA[
+        insert into CATEGORY
+        values(
+       #{cateNo},
+        #{id},
+        #{cateName},
+        #{description},
+        CURRENT_DATE
+        )
+        ]]>
+    </insert>
+
+    <select id="selectCategory" parameterType="int" resultType="kr.co.bit.vo.CategoryVO">
+        <![CDATA[
+            SELECT * from CATEGORY WHERE CATENO = #{no} ORDER BY CATENO desc
+        ]]>
+    </select>
+
+    <delete id="deleteCate" parameterType="int">
+        <![CDATA[
+          delete from CATEGORY where CATENO=#{cateNo}
+
+        ]]>
+    </delete>
+
+    <select id="getDefaultCate" parameterType="map" resultType="int">
+        <![CDATA[
+          select CATENO from (SELECT rownum rnum , CATENO from CATEGORY where id=#{id} ORDER BY CATENO) where rnum='1'
+        ]]>
+    </select>
+</mapper>
