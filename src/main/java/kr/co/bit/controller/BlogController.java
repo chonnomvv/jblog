@@ -32,7 +32,8 @@ public class BlogController {
 
 
     @RequestMapping(value = "/jblog/{id}",method = RequestMethod.GET)
-    public String main(@PathVariable String id,Model model,@RequestParam(value="cateNo",required = false,defaultValue = "-1" )int cateNo){
+    public String main(@PathVariable String id,Model model,
+                       @RequestParam(value="cateNo",required = false,defaultValue = "-1" )int cateNo){
         BlogVO blogVO = blogServices.getList(id);
         System.out.println("/jblog/{id}에 넘어온 cateNo = "+cateNo);
         model.addAttribute("blogVO",blogVO);
@@ -51,7 +52,10 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/jblog/blog/{id}/modify")
-    public String modify(@RequestParam(value = "file") MultipartFile file, @RequestParam(value = "blogTitle",required = false,defaultValue = "")String blogTitle,@PathVariable String id,Model model){
+    public String modify(@RequestParam(value = "file") MultipartFile file,
+                         @RequestParam(value = "blogTitle",required = false,defaultValue = "")String blogTitle,
+                         @PathVariable String id,
+                         Model model){
         BlogVO blogVO = blogServices.getList(id);
         model.addAttribute("blogVO",blogVO);
         blogServices.modify(file, blogTitle,id);

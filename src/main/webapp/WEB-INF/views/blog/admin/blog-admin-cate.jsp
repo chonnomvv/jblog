@@ -136,7 +136,7 @@
         str += "<tr name = '"+cateNo+"'>";
         str += "<td id= '"+cateNo+"'>" + categoryVO.cateNo + "</td>";
         str += "<td>" + categoryVO.cateName + "</td>";
-        str += "<td>포스트수 TODO</td>";
+        str += "<td>"+categoryVO.cateCount+"</td>";
         str += "<td>" + categoryVO.description + "</td>";
         str += "<td><img src = '" + "${pageContext.request.contextPath}/assets/images/delete.jpg" + "' id='"+cateNo+"'></td>";
         str += "";

@@ -11,16 +11,12 @@
 </head>
 <body>
 	<div class="center-content">
-
 		<c:import url="/WEB-INF/views/includes/header.jsp"/>
-		
 		<form class="join-form" id="join-form" method="post" action="/jblog/user/join">
 			<label class="block-label" for="name">이름</label>
-			<input type="text" name="userName"  value="" />
-			
+			<input type="text" id= "name_space"name="userName"  value="" />
 			<label class="block-label" for="id">아이디</label>
 			<input type="text" name="id"  value="" />
-			
 			<input id="btn-checkid" type="button" value="id 중복체크">
 			<p id="checkid-msg" class="form-error">
 			&nbsp;
@@ -35,9 +31,7 @@
 			<input type="submit" value="가입하기">
 		</form>
 	</div>
-
 </body>
-
 <script type="text/javascript">
 	$("#btn-checkid").on("click",function(checkId){
 	    var id = $("[name=id]").val();
@@ -47,7 +41,6 @@
 			type:"post",
 			data:{id:id},
 			dataType:"json",
-
 			success: function(result){
 			    console.log(result);
 			    if(result==true){
@@ -60,6 +53,11 @@
                 console.error(status + " : " + error);
             }
 		})
+	})
+
+	$("#name_space").on("ready" ,{
+
+
 	})
 </script>
 

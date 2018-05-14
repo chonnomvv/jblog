@@ -20,6 +20,7 @@ public class CategoryDAO {
     }
 
     public List<CategoryVO> getList(String id){
+
         return sqlSession.selectList("category.getList",id);
     }
 
