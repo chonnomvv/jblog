@@ -37,19 +37,17 @@
     <div id="wrapper">
         <div id="content">
             <div class="blog-content">
-123123
+
                 <c:choose>
                     <c:when test="${empty postList}">
-123213213
-                        <h4>${postList[0].postTitle}</h4>
-                        <pre>${postList[0].postContent}
+                        <h4>${defaultList[0].postTitle}</h4>
+                        <pre>${defaultList[0].postContent}
                         </pre>
                     </c:when>
                     <c:otherwise>
-                        456456
-                        <h4>${postVO.postTitle}</h4>
-                        <pre>${postVO.postContent}
-                        </pre>
+                            <h4>${postList[0].postTitle}</h4>
+                            <pre>${postList[0].postContent}
+                            </pre>
                     </c:otherwise>
                 </c:choose>
                 <!-- 등록된 글이 없는경우 -->
@@ -61,16 +59,16 @@
             </div>
             <ul class="blog-list">
                 <li id="postList">
-                    <%--<c:if test="${defaultCateNo eq '-1'}">--%>
-
-                        <%--<a href="">${postList[0].postTitle}ㅋㅋㅋㅋㅋ</a>--%>
-                        <%--<span>${postList[0].regDate}</span>--%>
-
-                    <%--</c:if>--%>
                     <c:choose>
                         <c:when test="${empty postList}">
-                            <a href ="">글이 없습니다.</a>
-                            <span>${postList[0].regDate}</span>
+                            <c:forEach items="${defaultList}" var="defaultList">
+                                <a href="/jblog/post/view?id=${blogVO.id}&postNo=${list.postNo}">${list.postTitle}</a>
+                                <span>${list.regDate}</span><br>
+                            </c:forEach>
+                            <c:forEach items="${defaultList}" var ="list">
+                                <a href ="">${list.postTitle}</a>
+                                <span>${list.regDate}</span><br>
+                            </c:forEach>
                         </c:when>
                     <c:otherwise>
                     <c:forEach items="${postList}" var="list">
@@ -107,48 +105,9 @@
     $(document).ready(function () {
         var id = $("#blogId").val();
         fetchList(id);
-        //
-        // var defaultCateNo = $("#0").val();
-        // console.log(defaultCateNo);
-        // postList(id,defaultCateNo);
+
     })
 
-    <%--$("#postList").ready(function(){--%>
-        <%--var id = $("#blogID").val();--%>
-
-        <%--var cateNo = $(this).attr("class");--%>
-
-        <%--console.log("who are you"+cateNo);--%>
-        <%--<c:choose>--%>
-        <%--<c:when test="${empty cateNo }">--%>
-        <%--console.log("나낭ㄹ아ㅓ디폴트ㅌ트트트"+cateNo);--%>
-        <%--getDefaultCate(id)--%>
-        <%--</c:when>--%>
-        <%--<c:otherwise>--%>
-        <%--var cateNo = cateNo;--%>
-        <%--console.log("나낭ㄹ아ㅓ"+cateNo);--%>
-        <%--postList(id,cateNo);--%>
-        <%--</c:otherwise>--%>
-        <%--</c:choose>--%>
-
-    <%--})--%>
-
-    <%--function postList(id,cateNo){--%>
-
-        <%--$.ajax({--%>
-            <%--url: "/jblog/blog/"+cateNo+"/getPost",--%>
-            <%--type:"post",--%>
-            <%--data:{cateNo:cateNo ,id:id},--%>
-            <%--dataType: "json",--%>
-            <%--success:--%>
-            <%--function(list){--%>
-                <%--for(var i=0; i<list.length;i++){--%>
-                    <%--renderPost(list[i]);}--%>
-                <%--}, error: function (XHR, status, error) {--%>
-                    <%--console.error(status + ":" + error);--%>
-            <%--}--%>
-        <%--})--%>
-<%--}--%>
     function fetchList(id) {
         $.ajax({
                 url: "/jblog/category/getList",
@@ -166,17 +125,6 @@
         )
     }
 
-    // function renderPost(postVO){
-    //     var postTitle = postVO.postTitle;
-    //     var postDate = postVO.regDate;
-    //
-    //     var str ="";
-    //     str += "<a href=''>"+postTitle+"</a>";
-    //     str += "<span>"+postDate+"</span>";
-    //
-    //     $("#postList").prepend(str);
-    // }
-
     function render(categoryVO,i) {
         var cateName = categoryVO.cateName;
         var cateNo = categoryVO.cateNo;
@@ -185,19 +133,5 @@
         str += "";
         $("#cateList").append(str);
     }
-    //
-    // function getDefaultCate(id){
-    //     $.ajax({
-    //         url:"/jblog/category/getDefaultCate",
-    //         type: "post",
-    //         data:{id:id},
-    //         dataType: "json",
-    //         success:
-    //             function(defaultCateNo){
-    //                 console.log("디폴트트트트"+defaultCateNo)
-    //                 postList(id,defaultCateNo)
-    //             }
-    //     })
-    // }
 </script>
 </html>

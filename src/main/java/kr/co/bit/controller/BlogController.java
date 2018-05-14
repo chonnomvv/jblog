@@ -7,6 +7,7 @@ import kr.co.bit.service.CategoryService;
 import kr.co.bit.service.PostServices;
 import kr.co.bit.vo.BlogVO;
 import kr.co.bit.vo.CategoryVO;
+import kr.co.bit.vo.PostVO;
 import kr.co.bit.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,8 @@ public class BlogController {
         System.out.println("/jblog/{id}에 넘어온 cateNo = "+cateNo);
         model.addAttribute("blogVO",blogVO);
         model.addAttribute("defaultCateNo",cateNo);
-        model.addAttribute("postList",postServices.postList(cateNo,id));
+
+        model.addAttribute("defaultList",postServices.postList(cateNo,id));
             return "/blog/blog-main.jsp";
 
     }
@@ -69,6 +71,8 @@ public class BlogController {
     public String getPost(@PathVariable int cateNo,Model model){
         String id = blogServices.getId(cateNo);
         model.addAttribute("postList",postServices.postList(cateNo,id));
+
+        System.out.println("사이즈가 0입니까?="+postServices.postList(cateNo,id).size());
         BlogVO blogVO = blogServices.getList(id);
         model.addAttribute("blogVO",blogVO);
         System.out.println("겟포스트에서 뱉어내는 블로그아이디"+id);

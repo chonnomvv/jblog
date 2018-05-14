@@ -5,26 +5,32 @@
 
     <insert id="join" parameterType="kr.co.bit.vo.UsersVO">
 <![CDATA[
+
           INSERT INTO USERS
           values(SEQ_USERS_NO.nextval,
           #{id},
           #{userName},
           #{password},
           CURRENT_DATE )
+
         ]]>
 </insert>
 
     <select id="checkId" parameterType="String" resultType="String">
         <![CDATA[
+
         select id from USERS
         where id = #{id}
 
-]]>
+
+        ]]>
     </select>
 
     <select id="login" parameterType="kr.co.bit.vo.UsersVO" resultType="kr.co.bit.vo.UsersVO">
         <![CDATA[
+
         SELECT * from USERS WHERE ID=#{id} and PASSWORD=#{password}
-]]>
+
+        ]]>
     </select>
-        </mapper>
+</mapper>
