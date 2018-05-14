@@ -61,8 +61,6 @@ public class UserController {
         } else{
             return "redirect:/user/loginform";
         }
-
-
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
