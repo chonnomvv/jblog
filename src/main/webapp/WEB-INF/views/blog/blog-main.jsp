@@ -81,20 +81,17 @@
                 <li id="postList">
                     <c:choose>
                         <c:when test="${empty postList}">
-                            <<1>>
                             <c:forEach items="${defaultList}" var="defaultList">
                                 <a href="/jblog/post/view?id=${blogVO.id}&postNo=${list.postNo}">${list.postTitle}</a>
                                 <span>${list.regDate}</span><br>
                             </c:forEach>
                             <c:forEach items="${defaultList}" var ="list">
-                                <<2>>
                                 <a href ="/jblog/post/view?id=${blogVO.id}&postNo=${list.postNo}">${list.postTitle}</a>
                                 <span>${list.regDate}</span><br>
                             </c:forEach>
                         </c:when>
                     <c:otherwise>
                     <c:forEach items="${postList}" var="list">
-                        <<3>>
                         <a href="/jblog/post/view?id=${blogVO.id}&postNo=${list.postNo}">${list.postTitle}</a>
                         <span>${list.regDate}</span><br>
                     </c:forEach>
