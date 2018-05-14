@@ -25,4 +25,12 @@
 
         ]]>
     </select>
+
+    <select id="getCateNo" resultType="int" parameterType="int">
+        <![CDATA[
+        SELECT CATENO from POST where postno = #{postNo}
+
+        ]]>
+
+    </select>
 </mapper>

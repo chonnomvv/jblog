@@ -56,7 +56,7 @@
 
     <select id="getDefaultCate" parameterType="map" resultType="int">
         <![CDATA[
-          select CATENO from (SELECT rownum rnum , CATENO from CATEGORY where id=#{id} ORDER BY CATENO) where rnum='1'
+          select CATENO from (SELECT rownum rnum , CATENO from CATEGORY where id=#{id} ORDER BY CATENO DESC ) where rnum='1'
         ]]>
     </select>
 </mapper>

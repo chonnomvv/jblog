@@ -36,4 +36,8 @@ public class PostServices {
             return postList;
         }
     }
+
+    public int getCateNo(int postNo){
+        return postDAO.getCateNo(postNo);
+    }
 }

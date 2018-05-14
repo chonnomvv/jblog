@@ -37,19 +37,39 @@
     <div id="wrapper">
         <div id="content">
             <div class="blog-content">
+            <c:choose>
+                <c:when test="${!empty cateNo}">
 
                 <c:choose>
                     <c:when test="${empty postList}">
+
                         <h4>${defaultList[0].postTitle}</h4>
                         <pre>${defaultList[0].postContent}
                         </pre>
                     </c:when>
                     <c:otherwise>
+
                             <h4>${postList[0].postTitle}</h4>
                             <pre>${postList[0].postContent}
                             </pre>
                     </c:otherwise>
                 </c:choose>
+                </c:when>
+                <c:otherwise>
+
+                    <c:if test="${empty postList}">
+
+                        <h4>${defaultList[0].postTitle}</h4>
+                        <pre>${defaultList[0].postContent}
+                        </pre>
+                    </c:if>
+                    <h4>${postVO.postTitle}</h4>
+                    <pre>${postVO.postContent}
+                    </pre>
+
+                </c:otherwise>
+            </c:choose>
+
                 <!-- 등록된 글이 없는경우 -->
                 <!--
                 <h4>등록된 글이 없습니다.</h4>
@@ -61,17 +81,20 @@
                 <li id="postList">
                     <c:choose>
                         <c:when test="${empty postList}">
+                            <<1>>
                             <c:forEach items="${defaultList}" var="defaultList">
                                 <a href="/jblog/post/view?id=${blogVO.id}&postNo=${list.postNo}">${list.postTitle}</a>
                                 <span>${list.regDate}</span><br>
                             </c:forEach>
                             <c:forEach items="${defaultList}" var ="list">
-                                <a href ="">${list.postTitle}</a>
+                                <<2>>
+                                <a href ="/jblog/post/view?id=${blogVO.id}&postNo=${list.postNo}">${list.postTitle}</a>
                                 <span>${list.regDate}</span><br>
                             </c:forEach>
                         </c:when>
                     <c:otherwise>
                     <c:forEach items="${postList}" var="list">
+                        <<3>>
                         <a href="/jblog/post/view?id=${blogVO.id}&postNo=${list.postNo}">${list.postTitle}</a>
                         <span>${list.regDate}</span><br>
                     </c:forEach>
@@ -131,7 +154,7 @@
         var str = "";
         str += "<li id='"+i+"' name='postCateNo' value='"+cateNo+"'><a href = '/jblog/blog/"+cateNo+"/getPost?id='>" + cateName + "</a></li>";
         str += "";
-        $("#cateList").append(str);
+        $("#cateList").prepend(str);
     }
 </script>
 </html>

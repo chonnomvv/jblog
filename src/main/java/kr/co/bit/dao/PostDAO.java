@@ -42,4 +42,8 @@ public class PostDAO {
         PostVO postVO = sqlSession.selectOne("post.postView",postNo);
         return postVO;
     }
+
+    public int getCateNo(int postNo){
+        return sqlSession.selectOne("post.getCateNo",postNo);
+    }
 }
