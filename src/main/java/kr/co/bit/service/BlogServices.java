@@ -30,38 +30,79 @@ public class BlogServices {
 
         String saveDir = "/Users/JS-K/upload";
 
-        String originalName = file.getOriginalFilename();
+        if(file.isEmpty()){
+            String logoFile = blogDAO.getList(id).getLogoFile();
 
-        String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+            BlogVO blogVO = new BlogVO(id, blogTitle, logoFile);
 
-        String saveName = System.currentTimeMillis()+ UUID.randomUUID().toString()+exName;
+            blogVO.setId(id);
+            blogVO.setBlogTitle(blogTitle);
+            blogVO.setLogoFile(logoFile);
 
-        String filePath = saveDir + "/" +saveName;
-        String logoFile = saveName;
-        System.out.println("blog modify 파일패스 이름= " + filePath);
+            blogDAO.modify(blogVO);
+        } else if(blogTitle.equals("")){
+
+            String blogTitle2 = blogDAO.getList(id).getBlogTitle();
+
+            String originalName = file.getOriginalFilename();
+
+            String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+
+            String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+
+            String filePath = saveDir + "/" + saveName;
+            String logoFile = saveName;
+            System.out.println("blog modify 파일패스 이름= " + filePath);
 
 
-        BlogVO blogVO = new BlogVO(id, blogTitle, logoFile);
+            BlogVO blogVO = new BlogVO(id, blogTitle, logoFile);
 
-        blogVO.setId(id);
-        blogVO.setBlogTitle(blogTitle);
-        blogVO.setLogoFile(logoFile);
+            blogVO.setId(id);
+            blogVO.setBlogTitle(blogTitle2);
+            blogVO.setLogoFile(logoFile);
 
-        try {
-            byte[] fileData = file.getBytes();
-            OutputStream os = new FileOutputStream(saveDir+"/"+ saveName);  //()=>어디에 쓸 것인지(filePath)
-            BufferedOutputStream bos = new BufferedOutputStream(os);
-            bos.write(fileData);
-            if(bos !=null){
-                bos.close();
-                System.out.println("복사완룡");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("id=" + blogVO.getBlogTitle());
+            System.out.println("id=" + blogVO.getId());
+
+
         }
+        else {
 
-        blogDAO.modify(blogVO);
-        System.out.println("블로그 모디파이 서비스 끝남");
+            String originalName = file.getOriginalFilename();
+
+            String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+
+            String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+
+            String filePath = saveDir + "/" + saveName;
+            String logoFile = saveName;
+            System.out.println("blog modify 파일패스 이름= " + filePath);
+
+
+            BlogVO blogVO = new BlogVO(id, blogTitle, logoFile);
+
+            blogVO.setId(id);
+            blogVO.setBlogTitle(blogTitle);
+            blogVO.setLogoFile(logoFile);
+
+            System.out.println("id=" + blogVO.getBlogTitle());
+            System.out.println("id=" + blogVO.getId());
+
+            try {
+                byte[] fileData = file.getBytes();
+                OutputStream os = new FileOutputStream(saveDir + "/" + saveName);  //()=>어디에 쓸 것인지(filePath)
+                BufferedOutputStream bos = new BufferedOutputStream(os);
+                bos.write(fileData);
+                if (bos != null) {
+                    bos.close();
+                    System.out.println("복사완룡");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            blogDAO.modify(blogVO);
+            System.out.println("블로그 모디파이 서비스 끝남");
+        }
 
     }
 

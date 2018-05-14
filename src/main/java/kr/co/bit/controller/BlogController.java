@@ -51,7 +51,7 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/jblog/blog/{id}/modify")
-    public String modify(@RequestParam("file") MultipartFile file, @RequestParam("blogTitle")String blogTitle,@PathVariable String id,Model model){
+    public String modify(@RequestParam(value = "file") MultipartFile file, @RequestParam(value = "blogTitle",required = false,defaultValue = "")String blogTitle,@PathVariable String id,Model model){
         BlogVO blogVO = blogServices.getList(id);
         model.addAttribute("blogVO",blogVO);
         blogServices.modify(file, blogTitle,id);
