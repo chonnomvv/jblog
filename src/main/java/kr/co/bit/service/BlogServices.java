@@ -60,6 +60,7 @@ public class BlogServices {
             blogVO.setId(id);
             blogVO.setBlogTitle(blogTitle2);
             blogVO.setLogoFile(logoFile);
+            blogDAO.modify(blogVO);
         }
         else {
 
