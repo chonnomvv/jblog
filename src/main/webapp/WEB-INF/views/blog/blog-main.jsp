@@ -148,8 +148,9 @@
     function render(categoryVO,i) {
         var cateName = categoryVO.cateName;
         var cateNo = categoryVO.cateNo;
+        var cateCnt = categoryVO.cateCount;
         var str = "";
-        str += "<li id='"+i+"' name='postCateNo' value='"+cateNo+"'><a href = '/jblog/blog/"+cateNo+"/getPost?id='>" + cateName + "</a></li>";
+        str += "<li id='"+i+"' name='postCateNo' value='"+cateNo+"'><a href = '/jblog/blog/"+cateNo+"/getPost?id='>" + cateName + "["+cateCnt+"]</a></li>";
         str += "";
         $("#cateList").prepend(str);
     }

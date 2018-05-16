@@ -40,7 +40,6 @@ public class PostController {
         model.addAttribute("blogVO",blogVO);
         model.addAttribute("auth",auth);
         model.addAttribute("cateList",categoryList);
-        System.out.println(categoryList.size());
         return "/blog/admin/blog-admin-write.jsp";
     }
 
@@ -66,10 +65,7 @@ public class PostController {
 
         postVO = postServices.postView(postNo);
         model.addAttribute("postVO",postVO);
-
-        System.out.println("블로그 포스트 클릭시 넘어오는 view메소드 id = "+id);
         BlogVO blogVO = blogServices.getList(id);
-        System.out.println("포스트-뷰 => 블로그 사이즈?="+blogVO.getId()+"//"+blogVO.getBlogTitle());
         int cateNo = postServices.getCateNo(postNo);
         model.addAttribute("blogVO",blogVO);
         model.addAttribute("postList",postServices.postList(cateNo,id));

@@ -32,7 +32,6 @@ public class PostServices {
 
         else {
             List<PostVO> postList = postDAO.postList(cateNo);
-            System.out.println("포스트리스트 서비스에서 리스트 사이즈=" + postList.size());
             return postList;
         }
     }

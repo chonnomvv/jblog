@@ -18,7 +18,6 @@ public class CategoryService {
 
     public List<CategoryVO> getList(String id){
         List<CategoryVO> list = categoryDAO.getList(id);
-        System.out.println("리스트사이즈즈즈즈"+list.size());
         return list;
     }
 

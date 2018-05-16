@@ -52,7 +52,7 @@ public class BlogServices {
 
             String filePath = saveDir + "/" + saveName;
             String logoFile = saveName;
-            System.out.println("blog modify 파일패스 이름= " + filePath);
+
 
 
             BlogVO blogVO = new BlogVO(id, blogTitle, logoFile);
@@ -60,11 +60,6 @@ public class BlogServices {
             blogVO.setId(id);
             blogVO.setBlogTitle(blogTitle2);
             blogVO.setLogoFile(logoFile);
-
-            System.out.println("id=" + blogVO.getBlogTitle());
-            System.out.println("id=" + blogVO.getId());
-
-
         }
         else {
 
@@ -76,17 +71,11 @@ public class BlogServices {
 
             String filePath = saveDir + "/" + saveName;
             String logoFile = saveName;
-            System.out.println("blog modify 파일패스 이름= " + filePath);
-
-
             BlogVO blogVO = new BlogVO(id, blogTitle, logoFile);
 
             blogVO.setId(id);
             blogVO.setBlogTitle(blogTitle);
             blogVO.setLogoFile(logoFile);
-
-            System.out.println("id=" + blogVO.getBlogTitle());
-            System.out.println("id=" + blogVO.getId());
 
             try {
                 byte[] fileData = file.getBytes();
@@ -95,13 +84,11 @@ public class BlogServices {
                 bos.write(fileData);
                 if (bos != null) {
                     bos.close();
-                    System.out.println("복사완룡");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
             blogDAO.modify(blogVO);
-            System.out.println("블로그 모디파이 서비스 끝남");
         }
 
     }

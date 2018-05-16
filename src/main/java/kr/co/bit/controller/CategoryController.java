@@ -18,12 +18,11 @@ public class CategoryController {
 
     @ResponseBody
     @RequestMapping(value = "/jblog/category/getList",method = RequestMethod.POST)
-    public List<CategoryVO> getList(@RequestParam("id") String id,Model model){
-        System.out.println("getList로 넘어온 id="+id);
-        List<CategoryVO> list =  categoryService.getList(id);
-        model.addAttribute("list",list);
-        model.addAttribute("id",id);
-        return list;
+        public List<CategoryVO> getList(@RequestParam("id") String id,Model model){
+            List<CategoryVO> list =  categoryService.getList(id);
+            model.addAttribute("list",list);
+            model.addAttribute("id",id);
+            return list;
     }
 
     @ResponseBody
@@ -34,15 +33,12 @@ public class CategoryController {
         categoryVO.setId(id);
         categoryVO.setCateName(name);
         categoryVO.setDescription(description);
-
-        System.out.println("ajax 애드하고 들어온 vo 투스트링"+categoryVO.toString());
         return categoryService.addCate(categoryVO);
     }
 
     @ResponseBody
     @RequestMapping(value = "/jblog/category/deleteCate",method = RequestMethod.POST)
     public boolean deleteCate(@RequestParam("cateNo") int cateNo){
-        System.out.println("삭제 컨트롤러 들어옴");
         return categoryService.deleteCate(cateNo);
 
     }

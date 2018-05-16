@@ -35,7 +35,6 @@ public class BlogController {
     public String main(@PathVariable String id,Model model,
                        @RequestParam(value="cateNo",required = false,defaultValue = "-1" )int cateNo){
         BlogVO blogVO = blogServices.getList(id);
-        System.out.println("/jblog/{id}에 넘어온 cateNo = "+cateNo);
         model.addAttribute("blogVO",blogVO);
         model.addAttribute("defaultCateNo",cateNo);
 
@@ -75,11 +74,8 @@ public class BlogController {
     public String getPost(@PathVariable int cateNo,Model model){
         String id = blogServices.getId(cateNo);
         model.addAttribute("postList",postServices.postList(cateNo,id));
-
-        System.out.println("사이즈가 0입니까?="+postServices.postList(cateNo,id).size());
         BlogVO blogVO = blogServices.getList(id);
         model.addAttribute("blogVO",blogVO);
-        System.out.println("겟포스트에서 뱉어내는 블로그아이디"+id);
         return "/blog/blog-main.jsp";
 
 

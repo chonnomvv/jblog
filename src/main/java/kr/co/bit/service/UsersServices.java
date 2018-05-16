@@ -21,7 +21,6 @@ public class UsersServices {
         int userJoin = usersDAO.join(usersVO);
         blogDAO.makeBlog(usersVO);
         categoryDAO.makeCategory(usersVO);
-        System.out.println("유저서비스 유저조인");
         return userJoin;
     }
 
@@ -29,13 +28,11 @@ public class UsersServices {
         boolean flag = false;
 
         String str = usersDAO.checkId(id);
-        System.out.println(str);
         if(str == null){
             flag = true;
         }else{
             flag = false;
         }
-        System.out.println(flag);
         return flag;
     }
 

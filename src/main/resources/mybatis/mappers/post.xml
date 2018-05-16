@@ -16,7 +16,7 @@
     </insert>
 
     <select id="postList" parameterType="int" resultType="kr.co.bit.vo.PostVO">
-        select * from POST where cateNo = #{cateNo} ORDER BY POSTNO DESC
+        select * from POST where cateNo = #{cateNo} ORDER BY CATENO DESC
     </select>
 
     <select id="postView" parameterType="int" resultType="kr.co.bit.vo.PostVO">
