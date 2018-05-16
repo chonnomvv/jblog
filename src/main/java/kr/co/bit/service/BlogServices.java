@@ -53,14 +53,23 @@ public class BlogServices {
             String filePath = saveDir + "/" + saveName;
             String logoFile = saveName;
 
-
-
             BlogVO blogVO = new BlogVO(id, blogTitle, logoFile);
-
             blogVO.setId(id);
             blogVO.setBlogTitle(blogTitle2);
             blogVO.setLogoFile(logoFile);
             blogDAO.modify(blogVO);
+            try {
+                byte[] fileData = file.getBytes();
+                OutputStream os = new FileOutputStream(saveDir + "/" + saveName);  //()=>어디에 쓸 것인지(filePath)
+                BufferedOutputStream bos = new BufferedOutputStream(os);
+                bos.write(fileData);
+                if (bos != null) {
+                    bos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         else {
 

@@ -101,7 +101,6 @@
             </ul>
         </div>
     </div>
-
     <div id="extra">
         <div class="blog-logo">
             <img src="/upload/${blogVO.logoFile}">
@@ -127,7 +126,6 @@
         fetchList(id);
 
     })
-
     function fetchList(id) {
         $.ajax({
                 url: "/jblog/category/getList",
@@ -144,7 +142,6 @@
             }
         )
     }
-
     function render(categoryVO,i) {
         var cateName = categoryVO.cateName;
         var cateNo = categoryVO.cateNo;

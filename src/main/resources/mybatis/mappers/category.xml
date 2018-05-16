@@ -19,7 +19,7 @@
     <select id = "getList" parameterType="String" resultType="kr.co.bit.vo.CategoryVO" >
 
         <![CDATA[
-            select cateNo, cateName, (select count(postno) from POST WHERE category.cateno = post.cateno) cateCount,DESCRIPTION from CATEGORY where category.id = #{id}]]>
+            select cateNo, cateName, (select count(postno) from POST WHERE category.cateno = post.cateno) cateCount,DESCRIPTION from CATEGORY where category.id = #{id} order by CATENO]]>
     </select>
 
     <insert id="addCate" parameterType="kr.co.bit.vo.CategoryVO">

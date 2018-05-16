@@ -26,7 +26,6 @@ public class PostController {
     CategoryService categoryService;
     @Autowired
     PostServices postServices;
-
     @Autowired
     PostVO postVO;
 
